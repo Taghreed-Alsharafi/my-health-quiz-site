@@ -1,0 +1,623 @@
+/* 
+  1. DESIGN SYSTEM & VARIABLES
+  Defining the color palette, shadows, and spacing tokens.
+*/
+:root {
+  --bg: #f6f7ea;
+  --surface: #ffffff;
+  --surface-soft: #eef3e5;
+  --text: #17311f;
+  --muted: #5a6c5f;
+  --border: #d8e3cf;
+  --primary: #2f8638;
+  --primary-strong: #206329;
+  --success-bg: #e6f5e7;
+  --warning-bg: #fff3df;
+  --shadow: 0 18px 52px rgba(23, 49, 31, 0.08);
+  --radius-lg: 28px;
+  --radius-md: 18px;
+  --container: 1180px;
+}
+
+/* 
+  2. BASE STYLES & RESET
+  Setting up the foundation for consistent rendering across browsers.
+*/
+* {
+  box-sizing: border-box;
+}
+
+html {
+  scroll-behavior: smooth;
+}
+
+body {
+  margin: 0;
+  min-height: 100vh;
+  background:
+    radial-gradient(circle at top left, rgba(121, 176, 94, 0.14), transparent 28%),
+    linear-gradient(180deg, #fcfcf6 0%, var(--bg) 100%);
+  color: var(--text);
+  font-family: "Manrope", sans-serif;
+}
+
+button,
+a {
+  font: inherit;
+}
+
+button {
+  border: 0;
+  cursor: pointer;
+}
+
+a {
+  color: inherit;
+  text-decoration: none;
+}
+
+/* 
+  3. LAYOUT WRAPPERS
+  General containers and page-level layout components.
+*/
+.page-shell {
+  width: min(calc(100% - 2rem), var(--container));
+  margin: 1rem auto;
+  background: rgba(255, 255, 255, 0.54);
+  border: 1px solid rgba(216, 227, 207, 0.78);
+  border-radius: 24px;
+  overflow: hidden;
+  box-shadow: var(--shadow);
+}
+
+/* 
+  4. SITE HEADER
+  Contains the logo and main navigation.
+*/
+.site-header,
+.section {
+  padding-left: clamp(1.25rem, 3vw, 3.5rem);
+  padding-right: clamp(1.25rem, 3vw, 3.5rem);
+}
+
+.site-header {
+  min-height: 90px;
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  gap: 1rem;
+  background:
+    linear-gradient(135deg, rgba(232, 243, 220, 0.96), rgba(248, 250, 241, 0.98)),
+    linear-gradient(180deg, #ffffff, #f7f9f0);
+  border-bottom: 1px solid var(--border);
+}
+
+/* 
+  5. BRANDING & NAVIGATION
+  Styling for the logo and the menu links.
+*/
+.brand {
+  display: inline-flex;
+  align-items: center;
+  gap: 0.9rem;
+}
+
+.brand-mark {
+  width: 3rem;
+  height: 3rem;
+  display: grid;
+  place-items: center;
+  border-radius: 50%;
+  color: white;
+  font-weight: 800;
+  background: linear-gradient(135deg, var(--primary), #6aac58);
+  box-shadow: 0 10px 24px rgba(47, 134, 56, 0.18);
+}
+
+.brand-copy {
+  display: grid;
+  gap: 0.08rem;
+}
+
+.brand-copy strong {
+  font-size: 1rem;
+}
+
+.brand-copy small,
+.main-nav a,
+.hero-text,
+.section-heading p,
+.quiz-help,
+.feedback-panel p,
+#scoreText,
+.drag-label {
+  color: var(--muted);
+}
+
+.main-nav {
+  display: flex;
+  align-items: center;
+  gap: 2rem;
+}
+
+.main-nav a:hover {
+  color: var(--primary-strong);
+}
+
+.section {
+  padding-top: 3.5rem;
+  padding-bottom: 3.5rem;
+}
+
+/* 
+  6. HERO SECTION
+  The top intro area of the homepage.
+*/
+.hero {
+  display: grid;
+  grid-template-columns: 1.05fr 0.95fr;
+  gap: 2rem;
+  align-items: center;
+  background: linear-gradient(180deg, #fbfbf4 0%, #f7f8ee 100%);
+}
+
+.eyebrow {
+  margin: 0 0 1rem;
+  font-size: 0.88rem;
+  font-weight: 800;
+  text-transform: uppercase;
+  letter-spacing: 0.08em;
+  color: var(--primary-strong);
+}
+
+.hero h1,
+.section-heading h2 {
+  margin: 0;
+  line-height: 1.03;
+}
+
+.hero h1 {
+  max-width: 10ch;
+  font-size: clamp(3rem, 5vw, 4.8rem);
+}
+
+.hero-text,
+.section-heading p {
+  max-width: 39rem;
+  margin: 1.2rem 0 0;
+  font-size: 1.15rem;
+  line-height: 1.7;
+}
+
+.hero-actions {
+  margin-top: 2.1rem;
+}
+
+.primary-button,
+.secondary-button,
+.choice-button,
+.dropzone {
+  border-radius: 999px;
+  transition: transform 180ms ease, box-shadow 180ms ease, background 180ms ease, border-color 180ms ease;
+}
+
+.primary-button {
+  min-width: 240px;
+  padding: 1.1rem 1.6rem;
+  background: var(--primary);
+  color: white;
+  box-shadow: 0 14px 30px rgba(47, 134, 56, 0.2);
+}
+
+.secondary-button {
+  padding: 0.95rem 1.4rem;
+  border: 1px solid var(--border);
+  background: white;
+  color: var(--text);
+  display: inline-block;
+}
+
+.primary-button:hover,
+.secondary-button:hover,
+.choice-button:hover,
+.dropzone:hover {
+  transform: translateY(-1px);
+}
+
+.hero-image-card {
+  min-height: 520px;
+  border: 1px solid var(--border);
+  border-radius: 32px;
+  overflow: hidden;
+  background: url("images/image111.avif") center/cover no-repeat;
+}
+
+.hero-glow,
+.hero-runner,
+.floating-card,
+.produce-cluster {
+  display: none;
+}
+
+.section-heading {
+  margin-bottom: 1.6rem;
+}
+
+.section-heading h2 {
+  font-size: clamp(2rem, 3.5vw, 3rem);
+}
+
+/* 
+  7. QUIZ BOX & COMPONENTS
+  General styling for the quiz cards and their content.
+*/
+.quiz-card,
+.results-card {
+  background: var(--surface);
+  border: 1px solid var(--border);
+  border-radius: var(--radius-lg);
+  padding: 1.6rem;
+  box-shadow: var(--shadow);
+}
+
+.quiz-status {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  gap: 1rem;
+}
+
+.quiz-actions {
+  display: flex;
+  gap: 1rem;
+  flex-wrap: wrap;
+  align-items: center;
+  margin-top: 1.25rem;
+}
+
+.results-actions {
+  display: flex;
+  gap: 1rem;
+  flex-wrap: wrap;
+  margin-top: 1.25rem;
+}
+
+.progress-rail {
+  width: 100%;
+  height: 10px;
+  margin: 1.25rem 0 1.5rem;
+  background: var(--surface-soft);
+  border-radius: 999px;
+  overflow: hidden;
+}
+
+.progress-bar {
+  width: 0;
+  height: 100%;
+  background: linear-gradient(90deg, var(--primary), #78b35f);
+}
+
+.quiz-card h3,
+.results-card h3 {
+  margin: 0;
+  font-size: clamp(1.55rem, 3vw, 2rem);
+}
+
+.quiz-help {
+  margin: 0.75rem 0 1.4rem;
+  line-height: 1.7;
+}
+
+/* 
+  8. QUESTION CHOICES
+  Styles for multiple choice and true/false buttons.
+*/
+.choice-button {
+  width: 100%;
+  padding: 1rem 1.2rem;
+  text-align: left;
+  border: 1px solid var(--border);
+  background: #fbfcf7;
+  color: var(--text);
+}
+
+.choice-button.selected {
+  border-color: var(--primary);
+  background: #edf7ee;
+  box-shadow: 0 10px 24px rgba(47, 134, 56, 0.09);
+}
+
+/* 
+  9. DRAG AND DROP
+  Interactive styles for dragging cards and drop zones.
+*/
+.drag-area {
+  display: grid;
+  gap: 1.25rem;
+}
+
+.drag-layout {
+  display: grid;
+  gap: 1.2rem;
+}
+
+.drag-source {
+  padding: 1.1rem;
+  border: 1px solid var(--border);
+  border-radius: 24px;
+  background: #fbfcf7;
+}
+
+.drag-label {
+  margin: 0 0 0.8rem;
+  font-size: 0.96rem;
+}
+
+.drag-card {
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  min-width: 180px;
+  padding: 1rem 1.4rem;
+  border-radius: 999px;
+  background: linear-gradient(135deg, var(--primary), #69a953);
+  color: white;
+  font-weight: 700;
+  box-shadow: 0 14px 28px rgba(47, 134, 56, 0.18);
+}
+
+.drag-card.dragging {
+  opacity: 0.7;
+}
+
+.dropzone-grid {
+  display: grid;
+  grid-template-columns: repeat(3, minmax(0, 1fr));
+  gap: 1rem;
+}
+
+.dropzone {
+  padding: 1rem 1.15rem;
+  border: 1px dashed #9ab88d;
+  background: #f7faef;
+  color: var(--text);
+}
+
+.dropzone.drag-over,
+.dropzone.selected {
+  border-color: var(--primary);
+  background: #edf7ee;
+  box-shadow: 0 10px 24px rgba(47, 134, 56, 0.09);
+}
+
+.feedback-panel {
+  margin-top: 1.25rem;
+  padding: 1rem 1.15rem;
+  border-radius: var(--radius-md);
+  background: #f7f9f2;
+  border: 1px solid var(--border);
+}
+
+.feedback-panel.success {
+  background: var(--success-bg);
+}
+
+.feedback-panel.warning {
+  background: var(--warning-bg);
+}
+
+.results-card {
+  max-width: 760px;
+}
+
+/* 
+  10. NUTRITION INFO SECTION
+  Styles for the educational content area below the hero.
+*/
+.progress-info {
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  gap: 3.5rem;
+  align-items: center;
+}
+
+.progress-text {
+  order: 2;
+}
+
+.progress-text h2 {
+  font-size: clamp(2rem, 3.5vw, 2.7rem);
+  margin: 0 0 1rem;
+  color: var(--primary-strong);
+  line-height: 1.1;
+}
+
+.progress-intro {
+  font-size: 1.15rem;
+  line-height: 1.7;
+  color: var(--muted);
+  margin-bottom: 2rem;
+}
+
+.progress-list {
+  list-style: none;
+  padding: 0;
+  margin: 0;
+  display: grid;
+  gap: 1.4rem;
+}
+
+.progress-list li {
+  font-size: 1.05rem;
+  line-height: 1.6;
+  padding-left: 2rem;
+  position: relative;
+}
+
+.progress-list li::before {
+  content: '✦';
+  position: absolute;
+  left: 0;
+  top: 1px;
+  color: var(--primary);
+  font-size: 1.25rem;
+}
+
+.progress-list strong {
+  color: var(--text);
+  font-weight: 700;
+}
+
+.progress-visual {
+  border-radius: 32px;
+  overflow: hidden;
+  box-shadow: 0 20px 40px rgba(47, 134, 56, 0.12);
+  border: 1px solid var(--border);
+  display: flex;
+}
+
+.progress-image {
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+  display: block;
+}
+
+/* 
+  11. RESPONSIVE DESIGN
+  Adjustments for tablets, mobile phones, and smaller screens.
+*/
+@media (max-width: 920px) {
+  .progress-info {
+    grid-template-columns: 1fr;
+    gap: 2rem;
+  }
+
+  .hero {
+    grid-template-columns: 1fr;
+  }
+
+  .hero h1 {
+    max-width: none;
+  }
+
+  .hero-image-card {
+    min-height: 320px;
+  }
+
+  .dropzone-grid {
+    grid-template-columns: 1fr;
+  }
+}
+
+@media (max-width: 720px) {
+  .page-shell {
+    width: calc(100% - 1rem);
+    margin: 0.5rem auto;
+  }
+
+  .site-header,
+  .quiz-status,
+  .quiz-actions,
+  .results-actions {
+    flex-direction: column;
+    align-items: flex-start;
+  }
+
+  .main-nav {
+    gap: 1rem;
+    flex-wrap: wrap;
+  }
+
+  .primary-button {
+    min-width: 0;
+    width: 100%;
+  }
+}
+
+/* 
+  12. LEARN SECTION
+  Educational grid and cards for the Learn page.
+*/
+.learn h3 {
+  margin-top: 1.5rem;
+}
+
+.learn ul {
+  margin: 0.5rem 0 1rem;
+  padding-left: 1.2rem;
+}
+
+.learn li {
+  margin-bottom: 0.4rem;
+}
+
+.learn-grid {
+  display: grid;
+  grid-template-columns: repeat(2, minmax(0, 1fr));
+  gap: 1.25rem;
+}
+
+.learn-card {
+  background: var(--surface);
+  border: 1px solid var(--border);
+  border-radius: var(--radius-lg);
+  padding: 1.5rem;
+  box-shadow: var(--shadow);
+}
+
+.learn-card h3 {
+  margin-top: 0;
+  margin-bottom: 0.8rem;
+  font-size: 1.35rem;
+}
+
+.learn-card h4 {
+  margin: 1rem 0 0.45rem;
+  font-size: 1rem;
+  color: var(--primary-strong);
+}
+
+.learn-card p {
+  margin: 0.6rem 0 0.9rem;
+  line-height: 1.7;
+  color: var(--text);
+}
+
+.learn-card ul {
+  margin: 0 0 1rem;
+  padding-left: 1.2rem;
+}
+
+.learn-card li {
+  margin-bottom: 0.45rem;
+  line-height: 1.6;
+}
+
+.learn-card .primary-button {
+  margin-top: 0.8rem;
+}
+
+@media (max-width: 920px) {
+  .learn-grid {
+    grid-template-columns: 1fr;
+  }
+}
+
+.dropzone-items .drag-card {
+  min-width: auto;
+  padding: 0.8rem 1rem;
+}
+
+.site-footer {
+  text-align: center;
+  padding: 1.5rem;
+  border-top: 1px solid var(--border);
+  background: #f7f9f2;
+  color: var(--muted);
+  font-size: 0.95rem;
+}
+
+.site-footer strong {
+  color: var(--primary);
+}

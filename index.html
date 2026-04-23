@@ -1,0 +1,259 @@
+<!DOCTYPE html>
+
+<html lang="en">
+
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Healthy Eating Quiz</title>
+
+  <!-- EXTERNAL ASSETS: Fonts and Stylesheets -->
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Manrope:wght@400;500;600;700;800&display=swap" rel="stylesheet">
+
+  <link rel="stylesheet" href="styles.css">
+</head>
+
+<body>
+  <div class="page-shell">
+    <!-- SITE HEADER: Contains the branding and navigation links -->
+    <header class="site-header">
+      <a class="brand" href="#top">
+        <span class="brand-mark">HE</span>
+        <span class="brand-copy">
+          <strong>Healthy Eating Quiz</strong>
+          <small>Healthy habits start here</small>
+        </span>
+      </a>
+
+      <nav class="main-nav">
+        <a href="#top">Home</a>
+        <a href="#quiz">Quiz</a>
+        <a href="#results">Results</a>
+      </nav>
+    </header>
+
+    <!-- MAIN CONTENT AREA -->
+    <main id="top">
+
+      <!-- HERO SECTION: The introduction part of the website -->
+      <section class="hero section">
+        <div class="hero-copy">
+          <p class="eyebrow">A healthy lifestyle is the foundation of a strong, energized, and fulfilling life. By
+            making simple choices like eating nutritious foods, staying active, getting enough sleep, and managing
+            stress, you support both your body and mind. These habits do not just prevent disease,they improve focus,
+            boost mood, and enhance overall quality of life. In the long run, a healthy lifestyle empowers you to feel
+            better, live longer, and perform at your best every day.</p>
+          <h1>Test Your Nutrition IQ</h1>
+
+          <p class="hero-text">
+            Challenge yourself to learn the fundamentals of balanced meals and healthy habits.
+          </p>
+
+          <div class="hero-actions">
+            <button class="primary-button" id="startQuiz" type="button">
+              Begin Quiz
+            </button>
+            <button class="secondary-button" id="learnBtn" type="button">
+              Learn
+            </button>
+          </div>
+        </div>
+
+        <div class="hero-visual">
+          <div class="hero-image-card"></div>
+        </div>
+      </section>
+
+      <!-- PROGRESS/NUTRITION INFO SECTION: Educational content with an image -->
+      <section class="progress-info section">
+        <div class="progress-text">
+          <h2>Good to learn !</h2>
+          <p class="progress-intro">
+            Elevate your Knowladge even further with these science-backed eating habits:
+          </p>
+          <ul class="progress-list">
+            <li><strong>Unprocessed Focus:</strong> Increase your intake of legumes and whole grains to maximize
+              sustained glucose release and fiber levels.</li>
+            <li><strong>Hydration Timing:</strong> Sip water consistently throughout your meal process to optimize
+              nutrient breakdown and digestion flow.</li>
+            <li><strong>Bento Meal Prep:</strong> Aim for a balanced distribution of protein and healthy fats in every
+              container for peak mental performance.</li>
+            <li><strong>Satiety Signals:</strong> Use mindful breathing between bites to allow your digestive hormones
+              to communicate fullness to your brain.</li>
+          </ul>
+        </div>
+        <div class="progress-visual">
+          <img src="C:\Users\Taghreed Al-Sharafi\Desktop\website\images\image11111.png" alt="Conscious Nutrition Bento"
+            class="progress-image" />
+        </div>
+      </section>
+
+      <!-- QUIZ SECTION: Where the interactive questions are displayed -->
+      <section class="quiz section" id="quiz">
+        <article class="quiz-card" id="quizCard" hidden>
+
+          <div class="quiz-status">
+            <span id="questionCount"></span>
+            <span id="scoreText"></span>
+          </div>
+
+          <div class="progress-rail">
+            <div class="progress-bar" id="progressBar"></div>
+          </div>
+
+          <h3 id="questionTitle"></h3>
+          <p class="quiz-help" id="questionHelp"></p>
+
+          <div class="choices-grid" id="choicesGrid"></div>
+          <div class="drag-area" id="dragArea"></div>
+
+          <div class="feedback-panel" id="feedbackPanel">
+            <p id="feedbackText">Press Begin Quiz to start.</p>
+          </div>
+
+          <!-- ONLY NEXT BUTTON HERE -->
+          <div class="quiz-actions">
+            <button id="nextQuestion" class="primary-button">Next</button>
+          </div>
+
+        </article>
+      </section>
+
+      <!-- LEARN SECTION: Additional educational cards about healthy living -->
+      <section class="learn section" id="learnSection" hidden>
+        <div class="section-heading">
+          <p class="eyebrow">Learn</p>
+          <h2>Healthy Lifestyle</h2>
+        </div>
+
+        <div class="learn-grid">
+          <div class="learn-card">
+            <h3>🥗 What is Healthy Food?</h3>
+            <p>Healthy food means foods that provide essential nutrients your body needs:</p>
+            <ul>
+              <li><strong>Vitamins & minerals</strong> for immunity and body function</li>
+              <li><strong>Protein</strong> for muscles and repair</li>
+              <li><strong>Carbohydrates</strong> for energy</li>
+              <li><strong>Healthy fats</strong> for brain and heart health</li>
+              <li><strong>Fiber</strong> for digestion</li>
+            </ul>
+            <p>These usually come from natural, less processed foods.</p>
+          </div>
+
+          <div class="learn-card">
+            <h3>🍎 Main Food Types</h3>
+
+            <h4>1. Fruits & Vegetables</h4>
+            <ul>
+              <li>Rich in vitamins, minerals, and fiber</li>
+              <li>Help protect against diseases</li>
+              <li>Try to eat different colors daily</li>
+            </ul>
+
+            <h4>2. Protein Foods</h4>
+            <ul>
+              <li>Builds muscles and repairs body</li>
+              <li>Chicken, fish, eggs, beans, lentils, nuts</li>
+              <li>Mix animal and plant proteins</li>
+            </ul>
+
+            <h4>3. Carbohydrates</h4>
+            <ul>
+              <li>Main energy source</li>
+              <li>Choose whole grains</li>
+              <li>Avoid too much sugar and refined carbs</li>
+            </ul>
+          </div>
+
+          <div class="learn-card">
+            <h3>🥑 More Healthy Choices</h3>
+
+            <h4>4. Healthy Fats</h4>
+            <ul>
+              <li>Important for brain and heart</li>
+              <li>Found in olive oil, avocado, nuts, fish</li>
+              <li>Limit fried and processed fats</li>
+            </ul>
+
+            <h4>5. Dairy or Alternatives</h4>
+            <ul>
+              <li>Provides calcium for bones</li>
+              <li>Milk, yogurt, cheese, or plant-based alternatives</li>
+            </ul>
+          </div>
+
+          <div class="learn-card">
+            <h3>⚖️ What is a Balanced Diet?</h3>
+            <p>A balanced diet means eating the right proportion of all food groups:</p>
+            <ul>
+              <li>🥦 Half your plate: vegetables and fruits</li>
+              <li>🍗 One quarter: protein</li>
+              <li>🍞 One quarter: whole grains</li>
+              <li>🥑 Add small amounts of healthy fats</li>
+            </ul>
+          </div>
+
+          <div class="learn-card">
+            <h3>💡 Simple Daily Healthy Habits</h3>
+            <ul>
+              <li>Drink plenty of water 💧</li>
+              <li>Eat more home-cooked meals</li>
+              <li>Reduce sugar, fast food, and soda</li>
+              <li>Do not skip meals</li>
+              <li>Control portion sizes</li>
+            </ul>
+          </div>
+
+          <div class="learn-card">
+            <h3>🎯 Why It Matters</h3>
+            <ul>
+              <li>Stay energetic and focused</li>
+              <li>Maintain a healthy weight</li>
+              <li>Prevent diseases like diabetes and heart disease</li>
+              <li>Improve mood and mental health</li>
+            </ul>
+
+            <button class="primary-button" id="backHome" type="button">Back</button>
+          </div>
+        </div>
+      </section>
+
+      <!-- RESULTS SECTION: Displays the final score and feedback message -->
+      <section class="results section" id="results" hidden>
+
+        <div class="section-heading">
+          <p class="eyebrow">Results</p>
+          <h2>Your quiz summary</h2>
+        </div>
+
+        <article class="results-card">
+          <h3 id="resultTitle">Complete the quiz to see your result.</h3>
+          <p id="resultSummary">
+            Your score and a short message will appear here after question 10.
+          </p>
+
+          <!-- BUTTONS ONLY AFTER FINISH -->
+          <div class="results-actions" id="resultsActions" hidden>
+            <button id="restartQuiz" class="secondary-button">Restart</button>
+            <button id="anotherQuiz" class="secondary-button">Take Another Quiz</button>
+            <button id="homeBtn" class="secondary-button">Home</button>
+          </div>
+
+        </article>
+      </section>
+
+    </main>
+
+  </div>
+
+  <!-- CORE JAVASCRIPT: Application logic -->
+  <script src="script.js"></script>
+  <footer class="site-footer">
+    <p>Done by: <strong>Taghreed Al-Sharafi</strong></p>
+  </footer>
+
+</body>
+
+</html>
