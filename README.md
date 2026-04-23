@@ -10,18 +10,18 @@ In addition to the interactive component, the platform includes an educational s
 
 An interactive, user-centered website designed to improve nutrition awareness through engaging quizzes and simple learning content.
 
-## 🌐 Live Website
-[👉 Open Healthy Eating Quiz](https://taghreed-alsharafi.github.io/my-health-quiz-site/)
+## Live Website
+[ Open Healthy Eating Quiz](https://taghreed-alsharafi.github.io/my-health-quiz-site/)
 
 ## 💻 Source Code
 [View on GitHub](https://github.com/Taghreed-Alsharafi/my-health-quiz-site)
 
-## ✨ Features
+## Features
 - Interactive quiz (multiple choice, true/false, drag-and-drop)
 - Instant feedback
 - User-friendly design
 - Mobile responsive
 - Educational content on healthy lifestyle
 
-## 👩‍💻 Author
+## Author
 **Taghreed Al-Sharafi**
