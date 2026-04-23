@@ -1,7 +1,3 @@
-/**
- * QUIZ DATA SETS
- * Contains the questions, options, and correct answers for different quiz levels.
- */
 const quizSet1 = [
   {
     type: "multiple",
@@ -158,15 +154,10 @@ const quizSet2 = [
   }
 ];
 
-// Array holding all available quiz sets
 const allQuizSets = [quizSet1, quizSet2];
 
-/**
- * GLOBAL APP STATE
- * Tracks current quiz progress, score, and user selections.
- */
 let currentQuizIndex = 0;
-let activeQuiz = quizSet1;
+let activeQuiz = allQuizSets[currentQuizIndex];
 
 const state = {
   currentQuestion: 0,
@@ -178,77 +169,65 @@ const state = {
   started: false
 };
 
-/**
- * ELEMENTS
- * References to all interactive elements in the HTML.
- */
-startQuiz: document.getElementById("startQuiz"),
+const elements = {
+  startQuiz: document.getElementById("startQuiz"),
+  learnBtn: document.getElementById("learnBtn"),
   quizCard: document.getElementById("quizCard"),
-    questionCount: document.getElementById("questionCount"),
-      scoreText: document.getElementById("scoreText"),
-        progressBar: document.getElementById("progressBar"),
-          questionTitle: document.getElementById("questionTitle"),
-            questionHelp: document.getElementById("questionHelp"),
-              choicesGrid: document.getElementById("choicesGrid"),
-                dragArea: document.getElementById("dragArea"),
-                  feedbackPanel: document.getElementById("feedbackPanel"),
-                    feedbackText: document.getElementById("feedbackText"),
-                      restartQuiz: document.getElementById("restartQuiz"),
-                        nextQuestion: document.getElementById("nextQuestion"),
-                          resultTitle: document.getElementById("resultTitle"),
-                            resultSummary: document.getElementById("resultSummary"),
-                              anotherQuiz: document.getElementById("anotherQuiz"),
-                                resultsSection: document.getElementById("results"),
-                                  resultsActions: document.getElementById("resultsActions"),
-                                    learnBtn: document.getElementById("learnBtn"),
-                                      learnSection: document.getElementById("learnSection"),
-                                        backHome: document.getElementById("backHome"),
-                                          homeBtn: document.getElementById("homeBtn"),
+  questionCount: document.getElementById("questionCount"),
+  scoreText: document.getElementById("scoreText"),
+  progressBar: document.getElementById("progressBar"),
+  questionTitle: document.getElementById("questionTitle"),
+  questionHelp: document.getElementById("questionHelp"),
+  choicesGrid: document.getElementById("choicesGrid"),
+  dragArea: document.getElementById("dragArea"),
+  feedbackPanel: document.getElementById("feedbackPanel"),
+  feedbackText: document.getElementById("feedbackText"),
+  nextQuestion: document.getElementById("nextQuestion"),
+  restartQuiz: document.getElementById("restartQuiz"),
+  anotherQuiz: document.getElementById("anotherQuiz"),
+  homeBtn: document.getElementById("homeBtn"),
+  resultTitle: document.getElementById("resultTitle"),
+  resultSummary: document.getElementById("resultSummary"),
+  resultsSection: document.getElementById("results"),
+  resultsActions: document.getElementById("resultsActions"),
+  learnSection: document.getElementById("learnSection"),
+  backHome: document.getElementById("backHome")
 };
 
-/**
- * INITIALIZATION
- * Sets up the application.
- */
 function init() {
   setupEvents();
 }
 
-/**
- * EVENT LISTENERS
- * Connects UI actions to JavaScript functions.
- */
-if (elements.startQuiz) {
-  elements.startQuiz.addEventListener("click", startQuizFlow);
+function setupEvents() {
+  if (elements.startQuiz) {
+    elements.startQuiz.addEventListener("click", startQuizFlow);
+  }
+
+  if (elements.learnBtn) {
+    elements.learnBtn.addEventListener("click", showLearn);
+  }
+
+  if (elements.nextQuestion) {
+    elements.nextQuestion.addEventListener("click", goToNextQuestion);
+  }
+
+  if (elements.restartQuiz) {
+    elements.restartQuiz.addEventListener("click", restartQuiz);
+  }
+
+  if (elements.anotherQuiz) {
+    elements.anotherQuiz.addEventListener("click", takeAnotherQuiz);
+  }
+
+  if (elements.homeBtn) {
+    elements.homeBtn.addEventListener("click", goHome);
+  }
+
+  if (elements.backHome) {
+    elements.backHome.addEventListener("click", goHome);
+  }
 }
 
-if (elements.restartQuiz) {
-  elements.restartQuiz.addEventListener("click", restartQuiz);
-}
-
-if (elements.nextQuestion) {
-  elements.nextQuestion.addEventListener("click", goToNextQuestion);
-}
-
-if (elements.anotherQuiz) {
-  elements.anotherQuiz.addEventListener("click", takeAnotherQuiz);
-}
-if (elements.learnBtn) {
-  elements.learnBtn.addEventListener("click", showLearn);
-}
-
-if (elements.backHome) {
-  elements.backHome.addEventListener("click", goHome);
-}
-if (elements.homeBtn) {
-  elements.homeBtn.addEventListener("click", goHome);
-}
-}
-
-/**
- * CORE QUIZ LOGIC
- * Manages quiz start, restart, and state resetting.
- */
 function resetQuizState() {
   state.started = true;
   state.currentQuestion = 0;
@@ -256,7 +235,11 @@ function resetQuizState() {
   state.selectedAnswer = null;
   state.selectedZone = null;
   state.draggingItem = null;
+  state.placedItems = {};
 
+  activeQuiz = allQuizSets[currentQuizIndex];
+
+  elements.learnSection.hidden = true;
   elements.quizCard.hidden = false;
   elements.resultsSection.hidden = true;
   elements.resultsActions.hidden = true;
@@ -267,7 +250,6 @@ function resetQuizState() {
 
 function startQuizFlow() {
   currentQuizIndex = 0;
-  activeQuiz = allQuizSets[currentQuizIndex];
   resetQuizState();
   renderQuestion();
   document.getElementById("quiz").scrollIntoView({ behavior: "smooth", block: "start" });
@@ -275,7 +257,6 @@ function startQuizFlow() {
 
 function takeAnotherQuiz() {
   currentQuizIndex = (currentQuizIndex + 1) % allQuizSets.length;
-  activeQuiz = allQuizSets[currentQuizIndex];
   resetQuizState();
   renderQuestion();
   document.getElementById("quiz").scrollIntoView({ behavior: "smooth", block: "start" });
@@ -287,35 +268,6 @@ function restartQuiz() {
   document.getElementById("quiz").scrollIntoView({ behavior: "smooth", block: "start" });
 }
 
-/**
- * TRANSITIONS & UI NAVIGATION
- * Functions to navigate between different views (Quiz, Learn, Home).
- */
-function showLearn() {
-  elements.quizCard.hidden = true;
-  elements.resultsSection.hidden = true;
-  elements.learnSection.hidden = false;
-
-  document.getElementById("learnSection").scrollIntoView({
-    behavior: "smooth"
-  });
-}
-
-function goHome() {
-  elements.learnSection.hidden = true;
-  elements.quizCard.hidden = true;
-  elements.resultsSection.hidden = true;
-  elements.resultsActions.hidden = true;
-
-  document.getElementById("top").scrollIntoView({
-    behavior: "smooth"
-  });
-}
-
-/**
- * RENDERING FUNCTIONS
- * Handles building the HTML for different question types.
- */
 function renderQuestion() {
   const question = activeQuiz[state.currentQuestion];
   const progress = (state.currentQuestion / activeQuiz.length) * 100;
@@ -339,17 +291,14 @@ function renderQuestion() {
 
   const isChoiceQuestion = question.type === "multiple" || question.type === "truefalse";
   const isSingleDragQuestion = question.type === "dragdrop";
-  const isMultiDragQuestion = question.type === "dragdrop-multi";
 
   elements.choicesGrid.hidden = !isChoiceQuestion;
-  elements.dragArea.hidden = !(isSingleDragQuestion || isMultiDragQuestion);
+  elements.dragArea.hidden = !isSingleDragQuestion;
 
   if (isChoiceQuestion) {
     renderChoiceQuestion(question);
   } else if (isSingleDragQuestion) {
     renderDragQuestion(question);
-  } else if (isMultiDragQuestion) {
-    renderMultiDragQuestion(question);
   }
 }
 
@@ -499,25 +448,12 @@ function goToNextQuestion() {
     return;
   }
 
-  if (question.type === "dragdrop-multi") {
-    const placedCount = Object.keys(state.placedItems).length;
-    if (placedCount !== question.items.length) {
-      elements.feedbackText.textContent = "Please place all items before continuing.";
-      elements.feedbackPanel.className = "feedback-panel warning";
-      return;
-    }
-  }
-
   let isCorrect = false;
 
   if (question.type === "multiple" || question.type === "truefalse") {
     isCorrect = state.selectedAnswer === question.correct;
   } else if (question.type === "dragdrop") {
     isCorrect = state.selectedZone === question.correctZone;
-  } else if (question.type === "dragdrop-multi") {
-    isCorrect = question.items.every((itemObj) => {
-      return state.placedItems[itemObj.name] === itemObj.correctZone;
-    });
   }
 
   if (isCorrect) {
@@ -534,112 +470,6 @@ function goToNextQuestion() {
   renderQuestion();
 }
 
-function renderMultiDragQuestion(question) {
-  const wrapper = document.createElement("div");
-  wrapper.className = "drag-layout";
-
-  const source = document.createElement("div");
-  source.className = "drag-source";
-  source.innerHTML = '<p class="drag-label">Drag these cards</p>';
-
-  const cardsWrap = document.createElement("div");
-  cardsWrap.style.display = "flex";
-  cardsWrap.style.flexWrap = "wrap";
-  cardsWrap.style.gap = "0.75rem";
-
-  question.items.forEach((itemObj) => {
-    const card = document.createElement("div");
-    card.className = "drag-card";
-    card.draggable = true;
-    card.textContent = itemObj.name;
-    card.dataset.itemName = itemObj.name;
-
-    card.addEventListener("dragstart", () => {
-      state.draggingItem = itemObj.name;
-      card.classList.add("dragging");
-    });
-
-    card.addEventListener("dragend", () => {
-      card.classList.remove("dragging");
-    });
-
-    cardsWrap.appendChild(card);
-  });
-
-  source.appendChild(cardsWrap);
-
-  const zones = document.createElement("div");
-  zones.className = "dropzone-grid";
-
-  question.zones.forEach((zoneName) => {
-    const zone = document.createElement("div");
-    zone.className = "dropzone";
-    zone.dataset.zoneName = zoneName;
-    zone.style.borderRadius = "24px";
-    zone.style.minHeight = "140px";
-    zone.style.display = "flex";
-    zone.style.flexDirection = "column";
-    zone.style.alignItems = "stretch";
-    zone.style.justifyContent = "flex-start";
-    zone.style.gap = "0.6rem";
-
-    const title = document.createElement("strong");
-    title.textContent = zoneName;
-    title.style.marginBottom = "0.5rem";
-
-    const itemsContainer = document.createElement("div");
-    itemsContainer.className = "dropzone-items";
-    itemsContainer.style.display = "flex";
-    itemsContainer.style.flexWrap = "wrap";
-    itemsContainer.style.gap = "0.6rem";
-
-    zone.appendChild(title);
-    zone.appendChild(itemsContainer);
-
-    zone.addEventListener("dragover", (event) => {
-      event.preventDefault();
-      zone.classList.add("drag-over");
-    });
-
-    zone.addEventListener("dragleave", () => {
-      zone.classList.remove("drag-over");
-    });
-
-    zone.addEventListener("drop", (event) => {
-      event.preventDefault();
-      zone.classList.remove("drag-over");
-
-      if (!state.draggingItem) return;
-
-      state.placedItems[state.draggingItem] = zoneName;
-      moveCardToZone(state.draggingItem, itemsContainer);
-
-      const placedCount = Object.keys(state.placedItems).length;
-      if (placedCount === question.items.length) {
-        elements.feedbackText.textContent = "✅ All items placed. Press Next.";
-        elements.feedbackPanel.className = "feedback-panel success";
-      } else {
-        elements.feedbackText.textContent = `${placedCount} of ${question.items.length} items placed.`;
-        elements.feedbackPanel.className = "feedback-panel";
-      }
-    });
-
-    zones.appendChild(zone);
-  });
-
-  wrapper.append(source, zones);
-  elements.dragArea.appendChild(wrapper);
-}
-
-function moveCardToZone(itemName, targetContainer) {
-  const allCards = document.querySelectorAll(".drag-card");
-
-  allCards.forEach((card) => {
-    if (card.dataset.itemName === itemName) {
-      targetContainer.appendChild(card);
-    }
-  });
-}
 function showResults() {
   const percent = Math.round((state.score / activeQuiz.length) * 100);
 
@@ -660,8 +490,6 @@ function showResults() {
     funnyMessage = "🍕 Oops... time to break up with junk food for a while.";
   }
 
-  elements.scoreText.textContent = `Score: ${state.score}`;
-  elements.progressBar.style.width = "100%";
   elements.resultTitle.textContent = `You scored ${state.score} out of ${activeQuiz.length}`;
   elements.resultSummary.textContent = funnyMessage;
 
@@ -674,6 +502,27 @@ function showResults() {
   document.getElementById("results").scrollIntoView({ behavior: "smooth", block: "start" });
 }
 
+function showLearn() {
+  elements.quizCard.hidden = true;
+  elements.resultsSection.hidden = true;
+  elements.learnSection.hidden = false;
 
+  document.getElementById("learnSection").scrollIntoView({
+    behavior: "smooth",
+    block: "start"
+  });
+}
+
+function goHome() {
+  elements.learnSection.hidden = true;
+  elements.quizCard.hidden = true;
+  elements.resultsSection.hidden = true;
+  elements.resultsActions.hidden = true;
+
+  document.getElementById("top").scrollIntoView({
+    behavior: "smooth",
+    block: "start"
+  });
+}
 
 init();
