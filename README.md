@@ -13,7 +13,7 @@ An interactive, user-centered website designed to improve nutrition awareness th
 ## Live Website
 [ Open Healthy Eating Quiz](https://taghreed-alsharafi.github.io/my-health-quiz-site/)
 
-## 💻 Source Code
+## Source Code
 [View on GitHub](https://github.com/Taghreed-Alsharafi/my-health-quiz-site)
 
 ## Features
