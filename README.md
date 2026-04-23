@@ -3,3 +3,25 @@ The Healthy Eating Quiz is an interactive, user-centered web application develop
 The system incorporates a structured quiz format with multiple question types, including multiple-choice, true/false, and drag-and-drop interactions. Immediate feedback is provided after each response, enabling users to learn iteratively and reinforce their understanding in real time. From a usability perspective, the interface emphasizes clean layout, readable typography, intuitive navigation, and responsive design, ensuring consistent performance across both desktop and mobile environments.
 
 In addition to the interactive component, the platform includes an educational section that presents foundational concepts related to healthy eating, such as balanced diets, nutrient categories, and practical dietary recommendations. Integrating instructional content with interactive assessment supports both knowledge acquisition and user engagement.
+
+
+
+# Healthy Eating Quiz
+
+An interactive, user-centered website designed to improve nutrition awareness through engaging quizzes and simple learning content.
+
+## 🌐 Live Website
+[👉 Open Healthy Eating Quiz](https://taghreed-alsharafi.github.io/my-health-quiz-site/)
+
+## 💻 Source Code
+[View on GitHub](https://github.com/Taghreed-Alsharafi/my-health-quiz-site)
+
+## ✨ Features
+- Interactive quiz (multiple choice, true/false, drag-and-drop)
+- Instant feedback
+- User-friendly design
+- Mobile responsive
+- Educational content on healthy lifestyle
+
+## 👩‍💻 Author
+**Taghreed Al-Sharafi**
