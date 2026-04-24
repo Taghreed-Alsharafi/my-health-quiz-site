@@ -1,3 +1,7 @@
+/**
+ * QUIZ DATA SETS
+ * Contains the questions, options, and correct answers for different quiz levels.
+ */
 const quizSet1 = [
   {
     type: "multiple",
@@ -169,6 +173,10 @@ const state = {
   started: false
 };
 
+/**
+ * ELEMENTS
+ * References to all interactive elements in the HTML.
+ */
 const elements = {
   startQuiz: document.getElementById("startQuiz"),
   learnBtn: document.getElementById("learnBtn"),
@@ -194,10 +202,18 @@ const elements = {
   backHome: document.getElementById("backHome")
 };
 
+/**
+ * INITIALIZATION
+ * Sets up the application.
+ */
 function init() {
   setupEvents();
 }
 
+/**
+ * EVENT LISTENERS
+ * Connects UI actions to JavaScript functions.
+ */
 function setupEvents() {
   if (elements.startQuiz) {
     elements.startQuiz.addEventListener("click", startQuizFlow);
@@ -228,6 +244,10 @@ function setupEvents() {
   }
 }
 
+/**
+ * CORE QUIZ LOGIC
+ * Manages quiz start, restart, and state resetting.
+ */
 function resetQuizState() {
   state.started = true;
   state.currentQuestion = 0;
@@ -502,6 +522,10 @@ function showResults() {
   document.getElementById("results").scrollIntoView({ behavior: "smooth", block: "start" });
 }
 
+/**
+ * TRANSITIONS & UI NAVIGATION
+ * Functions to navigate between different views (Quiz, Learn, Home).
+ */
 function showLearn() {
   elements.quizCard.hidden = true;
   elements.resultsSection.hidden = true;
